@@ -15,3 +15,4 @@ _temp
 !protractor*.js
 !systemjs.config.js
 !wallaby.js
+npm-debug.log

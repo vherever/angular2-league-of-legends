@@ -1,0 +1,5 @@
+FIND SUMMONER
+<form (submit)="findSummoner($event)">
+  <input type="text" [(ngModel)]="title" name="title" placeholder="Enter summoner name...">
+</form>
+<div *ngIf="info">{{info.name}}</div>

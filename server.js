@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 require('dotenv').config();
 
 var index = require('./routes/index');
+var summoner = require('./routes/summoner');
 
 var port = 3000;
 
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
+app.use('/api', summoner);
 
 app.listen(port, function () {
     console.log('Server is running on ' + port);
