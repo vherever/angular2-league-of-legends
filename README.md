@@ -1,0 +1,2 @@
+# Angular2, Express, MongoDB, NodeJS application
+Create file .env in parent directory, paste DB_LOGIN=YOUR_LOGIN, DB_PASSWORD=YOUR_PASSWORD where 'YOUR_LOGIN' and 'YOUR_PASSWORD' is your login and password for database, in this example database is served from http://www.mlab.com
