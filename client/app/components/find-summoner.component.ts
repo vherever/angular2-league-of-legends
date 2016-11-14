@@ -10,13 +10,17 @@ export class FindSummonerComponent {
   summonerInfo: any = [];
 
   constructor(private summonerService: SummonerService) {
-    this.summonerService.getSummonerInformation()
-      .subscribe(info => {
-        this.info = this.obj2Arr(info);
-      })
   }
 
-  private obj2Arr(obj: any) {
+  private obj2Values(obj: any) {
     return Object.values(obj)[0];
+  }
+
+  findSummoner() {
+    this.summonerService.findSummonerByName(this.title)
+      .subscribe(info => {
+        this.info = this.obj2Values(info);
+        this.title = '';
+      })
   }
 }

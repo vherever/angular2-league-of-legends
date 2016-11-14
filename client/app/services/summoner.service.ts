@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SummonerService {
-  constructor(private http: Http) {
-    console.log('Summoner Service initialized!');
-  }
+  constructor(private http: Http) {}
 
-  getSummonerInformation() {
-    return this.http.get('/api/summoner')
+  findSummonerByName (title: string) {
+    return this.http.post('/api/summoner', {title: title})
       .map(res => res.json());
   }
 }
