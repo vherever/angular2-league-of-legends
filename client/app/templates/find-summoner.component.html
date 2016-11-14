@@ -1,5 +1,11 @@
 FIND SUMMONER
 <form (submit)="findSummoner($event)">
-  <input type="text" [(ngModel)]="title" name="title" placeholder="Enter summoner name...">
+    <input type="text" [(ngModel)]="title" name="title" placeholder="Enter summoner name...">
 </form>
-<div *ngIf="info">{{info.name}}</div>
+<div *ngIf="info">
+    name: {{info.name}}<br>
+    summonerLevel: {{info.summonerLevel}}<br>
+    profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{apiVersion}}/img/profileicon/{{info.profileIconId}}.png"><br>
+    revisionDate: {{info.revisionDate}}<br>
+    id: {{info.id}}
+</div>

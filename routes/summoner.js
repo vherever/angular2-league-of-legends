@@ -4,9 +4,16 @@ var LolApi = require('leagueapi');
 var app = {
     key: process.env.APP_KEY
 };
+LolApi.init(app.key, 'euw');
+router.get('/getApiVersion', function (req, res, next) {
+    LolApi.Static.getVersions('euw', function(err, info) {
+        if(!err) {
+            res.send(info);
+        }
+    });
+});
 
 router.post('/summoner', function (req, res, next) {
-    LolApi.init(app.key, 'euw');
     var val = req.body.title;
     LolApi.Summoner.getByName(val, function(err, summoner) {
         if(!err) {
