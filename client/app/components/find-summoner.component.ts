@@ -28,9 +28,4 @@ export class FindSummonerComponent {
                 this.title = '';
             })
     }
-
-    OnMenuToggle(event) {
-        event.preventDefault();
-        console.log('toggle');
-    }
 }

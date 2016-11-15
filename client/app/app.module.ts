@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {FindSummonerComponent} from "./components/find-summoner.component";
 import {SummonerService} from "./services/summoner.service";
 import {SidebarComponent} from "./components/sidebar.component";
+import {HeaderComponent} from "./components/header.component";
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {SidebarComponent} from "./components/sidebar.component";
     declarations: [
         AppComponent,
         FindSummonerComponent,
-        SidebarComponent
+        SidebarComponent,
+        HeaderComponent
     ],
     providers: [SummonerService],
     bootstrap: [AppComponent]
