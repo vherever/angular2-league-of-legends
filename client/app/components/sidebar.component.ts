@@ -1,6 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 @Component({
     selector: 'sidebar',
     templateUrl: 'app/templates/sidebar.component.html'
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+    @Input() toggledChild: boolean = false;
+}

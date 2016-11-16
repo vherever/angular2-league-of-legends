@@ -1,6 +1,6 @@
-<div id="wrapper">
-    <sidebar></sidebar>
-    <header-menu></header-menu>
+<div id="wrapper" [ngClass]="{'toggled': toggledParent}" (window:resize)="onResize($event)">
+    <sidebar [toggledChild]="toggledParent"></sidebar>
+    <header-menu (notifyToggled)="onNotifyToggle($event)" [toggledChild]="toggledParent"></header-menu>
     <div class="container-fluid">
         <find-summoner></find-summoner>
     </div>
