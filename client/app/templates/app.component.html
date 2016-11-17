@@ -3,5 +3,20 @@
     <header-menu (notifyToggled)="onNotifyToggle($event)" [toggledChild]="toggledParent"></header-menu>
     <div class="container-fluid">
         <find-summoner></find-summoner>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <overview></overview>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <match-history></match-history>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <champion-statistics></champion-statistics>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <role-statistics></role-statistics>
+            </div>
+        </div>
     </div>
 </div>
