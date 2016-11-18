@@ -9,8 +9,10 @@ import {SidebarComponent} from "./components/sidebar.component";
 import {HeaderComponent} from "./components/header.component";
 import {OverviewComponent} from "./components/overview.component";
 import {MatchHistoryComponent} from "./components/match-history.component";
-import {ChampionStatistics} from "./components/champion-statistics.component";
+import {ChampionStatisticsComponent} from "./components/champion-statistics.component";
 import {RoleStatisticsComponent} from "./components/role-statistics.component";
+import {Tabs} from "./components/tabs.component";
+import {Tab} from "./components/tab.component";
 
 @NgModule({
     imports: [
@@ -25,8 +27,10 @@ import {RoleStatisticsComponent} from "./components/role-statistics.component";
         HeaderComponent,
         OverviewComponent,
         MatchHistoryComponent,
-        ChampionStatistics,
-        RoleStatisticsComponent
+        ChampionStatisticsComponent,
+        RoleStatisticsComponent,
+        Tabs,
+        Tab
     ],
     providers: [SummonerService],
     bootstrap: [AppComponent]

@@ -3,4 +3,4 @@ import {Component} from "@angular/core";
     selector: 'champion-statistics',
     templateUrl: 'app/templates/champion-statistics.component.html'
 })
-export class ChampionStatistics {}
+export class ChampionStatisticsComponent {}
