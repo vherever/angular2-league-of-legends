@@ -6,7 +6,7 @@
 <form (submit)="findSummoner($event)">
     <input type="text" [(ngModel)]="title" name="title" placeholder="Enter summoner name...">
 </form>
-<div *ngIf="info">
+<div *ngIf="info && apiVersion">
     name: {{info.name}}<br>
     summonerLevel: {{info.summonerLevel}}<br>
     profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{apiVersion}}/img/profileicon/{{info.profileIconId}}.png"><br>

@@ -15,6 +15,12 @@ export class FindSummonerComponent {
             .subscribe(apiVersion => {
                 this.apiVersion = apiVersion[0]; // latest version of riot api
             });
+
+        // get the name of summoner from localStorage
+        this.summonerService.findSummonerByName(localStorage.getItem('summoner'))
+            .subscribe(info => {
+                this.info = this.obj2Values(info);
+            });
     }
 
     private obj2Values(obj: any) {
@@ -26,6 +32,7 @@ export class FindSummonerComponent {
             .subscribe(info => {
                 this.info = this.obj2Values(info);
                 this.title = '';
+                localStorage.setItem('summoner', this.obj2Values(info).name);
             })
     }
 }
