@@ -10,6 +10,8 @@ export class FindSummonerComponent {
     apiVersion: string;
     title: string;
 
+    lsSummoner: string = localStorage.getItem('summoner'); // summoner name from localStorage
+
     constructor(private summonerService: SummonerService) {
         this.summonerService.getApiVersion()
             .subscribe(apiVersion => {
@@ -17,12 +19,15 @@ export class FindSummonerComponent {
             });
 
         // get the name of summoner from localStorage
-        this.summonerService.findSummonerByName(localStorage.getItem('summoner'))
-            .subscribe(info => {
-                this.info = this.obj2Values(info);
-            });
+        if(this.lsSummoner) {
+            this.summonerService.findSummonerByName(this.lsSummoner)
+                .subscribe(info => {
+                    this.info = this.obj2Values(info);
+                });
+        }
     }
 
+    // method to easily get values from objects
     private obj2Values(obj: any) {
         return Object.values(obj)[0];
     }
