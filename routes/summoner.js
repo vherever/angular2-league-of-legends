@@ -19,6 +19,9 @@ router.post('/summoner', function (req, res, next) {
         if(!err) {
             res.send(summoner);
         }
+        else {
+            res.send({error: 'Wooops! This summoner is not exist. Please try another'});
+        }
     });
 });
 

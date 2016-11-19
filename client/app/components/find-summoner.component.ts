@@ -9,6 +9,7 @@ export class FindSummonerComponent {
     info: SummonerInfo;
     apiVersion: string;
     title: string;
+    error: string;
 
     lsSummoner: string = localStorage.getItem('summoner'); // summoner name from localStorage
 
@@ -37,7 +38,14 @@ export class FindSummonerComponent {
             .subscribe(info => {
                 this.info = this.obj2Values(info);
                 this.title = '';
-                localStorage.setItem('summoner', this.obj2Values(info).name);
+                if(this.info.name) {
+                    //set name to localStorage if not undefined
+                    this.error = '';
+                    localStorage.setItem('summoner', this.info.name);
+                } else {
+                    this.info = '';
+                    this.error = info;
+                }
             })
     }
 }

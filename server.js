@@ -22,6 +22,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', index);
 app.use('/api', summoner);
 
-app.listen(port, function () {
+app.listen(process.env.port || port, function () {
     console.log('Server is running on ' + port);
 });
