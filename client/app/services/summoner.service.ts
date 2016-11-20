@@ -12,8 +12,13 @@ export class SummonerService {
             .map(res => res.json());
     }
 
-    findSummonerByName(title: string) {
-        return this.http.post('/api/summoner', {title: title})
+    getRegions() {
+        return this.http.get('/api/getRegions')
+            .map(res => res.json());
+    }
+
+    findSummonerByName(summoner: string, region: string) {
+        return this.http.post('/api/summoner', {summoner: summoner, region: region})
             .map(res => res.json());
     }
 }

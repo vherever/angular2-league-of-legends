@@ -8,10 +8,16 @@ import {SummonerInfo} from "../models/summoner-info";
 export class FindSummonerComponent {
     info: SummonerInfo;
     apiVersion: string;
-    title: string;
+    regions: any;
+    localStorageData: any = {
+        summoner: localStorage.getItem('summoner'),
+        region: localStorage.getItem('region')
+    };
+    summoner: string = this.localStorageData.summoner ? this.localStorageData.summoner : '';
+    region: string = this.localStorageData.region ? this.localStorageData.region : 'euw';
     error: string;
+    errorValidate: string;
 
-    lsSummoner: string = localStorage.getItem('summoner'); // summoner name from localStorage
 
     constructor(private summonerService: SummonerService) {
         this.summonerService.getApiVersion()
@@ -19,9 +25,14 @@ export class FindSummonerComponent {
                 this.apiVersion = apiVersion[0]; // latest version of riot api
             });
 
+        this.summonerService.getRegions()
+            .subscribe(regions => {
+                this.regions = regions;
+            });
+
         // get the name of summoner from localStorage
-        if(this.lsSummoner) {
-            this.summonerService.findSummonerByName(this.lsSummoner)
+        if(this.localStorageData.summoner) {
+            this.summonerService.findSummonerByName(this.localStorageData.summoner, this.localStorageData.region)
                 .subscribe(info => {
                     this.info = this.obj2Values(info);
                 });
@@ -34,18 +45,23 @@ export class FindSummonerComponent {
     }
 
     findSummoner() {
-        this.summonerService.findSummonerByName(this.title)
-            .subscribe(info => {
-                this.info = this.obj2Values(info);
-                this.title = '';
-                if(this.info.name) {
-                    //set name to localStorage if not undefined
-                    this.error = '';
-                    localStorage.setItem('summoner', this.info.name);
-                } else {
-                    this.info = '';
-                    this.error = info;
-                }
-            })
+        if(this.summoner.length > 1 && this.summoner != '') {
+            this.summonerService.findSummonerByName(this.summoner, this.region)
+                .subscribe(info => {
+                    this.info = this.obj2Values(info);
+                    // this.summoner = '';
+                    if (this.info.name && this.region) {
+                        //set summoner and region to localStorage values if not undefined
+                        localStorage.setItem('summoner', this.info.name);
+                        localStorage.setItem('region', this.region);
+                        this.errorValidate = '';
+                    } else {
+                        this.info = null;
+                        this.error = info;
+                    }
+                })
+        } else {
+            this.errorValidate = 'The name must be at least 2 characters long'
+        }
     }
 }

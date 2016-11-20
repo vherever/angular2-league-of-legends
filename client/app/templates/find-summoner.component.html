@@ -1,3 +1,12 @@
+<form (submit)="findSummoner($event)">
+    <div *ngIf="errorValidate">{{errorValidate}}</div>
+    <input type="text" [(ngModel)]="summoner" name="summoner" placeholder="Enter summoner name...">
+    <select name="region" [(ngModel)]="region">
+        <option *ngFor="let region of regions" value="{{region.slug}}">{{region.name}}</option>
+    </select>
+    <input type="submit" value="find" />
+</form>
+
 <div *ngIf="info && apiVersion">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: red">
@@ -23,7 +32,3 @@
         <div class="col-lg-12">{{error.error}}</div>
     </div>
 </div>
-
-<form (submit)="findSummoner($event)">
-    <input type="text" [(ngModel)]="title" name="title" placeholder="Enter summoner name...">
-</form>
