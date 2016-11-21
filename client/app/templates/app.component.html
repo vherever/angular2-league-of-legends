@@ -6,13 +6,18 @@
         [regions]="regions"
         [apiVersion]="apiVersion"
         (notifySummonerReq)="onNotifySummonerData($event)"
-        (errorNotify)="onErrorNotify($event)"></header-menu>
+        (errorNotify)="onErrorNotify($event)"
+        (summonerIdNotify)="onSummonerIdNotify($event)"
+        (playerSummaryNotify)="onPlayerSummaryNotify($event)">
+    </header-menu>
     <div class="container-fluid">
 
 
-        <find-summoner [apiVersion]="apiVersion"
+        <summoner-info [apiVersion]="apiVersion"
                        [info]="info"
-                       [error]="error"></find-summoner>
+                       [error]="error"
+                       [playerSummary]="playerSummary">
+        </summoner-info>
 
 
         <tabs>

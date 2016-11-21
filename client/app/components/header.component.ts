@@ -17,6 +17,8 @@ export class HeaderComponent {
 
     @Output() errorNotify: EventEmitter<string> = new EventEmitter<string>();
 
+    @Output() playerSummaryNotify: EventEmitter<any> = new EventEmitter<any>();
+
     info: SummonerInfo;
     localStorageData: any = {
         summoner: localStorage.getItem('summoner'),
@@ -39,6 +41,7 @@ export class HeaderComponent {
 
     findSummoner() {
         if(this.summoner.length > 1 && this.summoner != '') {
+            this.playerSummaryNotify.emit(null); //reset playerSummary after call findSummoner call
             this.summonerService.findSummonerByName(this.summoner, this.region)
                 .subscribe(info => {
                     this.info = this.utilsService.obj2Values(info);
@@ -51,6 +54,8 @@ export class HeaderComponent {
                         this.errorNotify.emit('');
 
                         this.notifySummonerReq.emit(this.info);
+                        //getPlayerSummary
+                        this.getPlayerSummary(this.info.id, this.region);
                     } else {
                         this.info = null;
                         this.errorNotify.emit(info);
@@ -59,5 +64,14 @@ export class HeaderComponent {
         } else {
             this.errorValidate = 'The name must be at least 2 characters long'
         }
+    }
+
+    private getPlayerSummary(id: number, region: string) {
+        // getPlayerSummary
+        this.summonerService.getPlayerSummary(id, region)
+            .subscribe((playerSummary: any) => {
+                this.playerSummaryNotify.emit(playerSummary);
+                console.log('playerSummary', playerSummary);
+        });
     }
 }

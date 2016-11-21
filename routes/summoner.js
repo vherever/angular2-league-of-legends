@@ -35,4 +35,19 @@ router.post('/summoner', function (req, res, next) {
     });
 });
 
+router.post('/getPlayerSummary', function (req, res, next) {
+    var val = {
+        summonerId: req.body.summonerId,
+        season: req.body.season,
+        region: req.body.summonerId
+    };
+    LolApi.Stats.getPlayerSummary(val.summonerId, val.region, function (err, data) {
+        if(!err) {
+            res.send(data);
+        } else {
+            res.send({error: 'error loading player summary'});
+        }
+    });
+});
+
 module.exports = router;

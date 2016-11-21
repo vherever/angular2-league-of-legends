@@ -14,6 +14,8 @@ export class AppComponent implements OnInit{
     info: SummonerInfo;
     error: string;
 
+    playerSummary: any;
+
     constructor(private summonerService: SummonerService) {
         this.summonerService.getApiVersion()
             .subscribe(apiVersion => {
@@ -44,5 +46,9 @@ export class AppComponent implements OnInit{
 
     onErrorNotify(data: string): void {
         this.error = data;
+    }
+
+    onPlayerSummaryNotify(data: any): void {
+        this.playerSummary = data;
     }
 }

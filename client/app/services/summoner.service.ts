@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -20,5 +20,21 @@ export class SummonerService {
     findSummonerByName(summoner: string, region: string) {
         return this.http.post('/api/summoner', {summoner: summoner, region: region})
             .map(res => res.json());
+    }
+
+    getPlayerSummary(summonerId: number, region: string) {
+        return this.http.post('/api/getPlayerSummary', {summonerId: summonerId, region: region})
+            // .map(res => res.json());
+            .map(this.extractData);
+    }
+
+    //parsing error syntax error unexpected end of input
+    private extractData(res: Response) {
+        let body: any;
+        // check if empty, before call json
+        if (res.text()) {
+            body = res.json();
+        }
+        return body || '';
     }
 }
