@@ -1,3 +1,4 @@
+<!--
 <form (submit)="findSummoner($event)">
     <div *ngIf="errorValidate">{{errorValidate}}</div>
     <input type="text" [(ngModel)]="summoner" name="summoner" placeholder="Enter summoner name...">
@@ -6,8 +7,9 @@
     </select>
     <input type="submit" value="find" />
 </form>
+-->
 
-<div *ngIf="info && apiVersion">
+<div *ngIf="!error && info && apiVersion">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: red">
             <div>

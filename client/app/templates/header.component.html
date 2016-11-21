@@ -1,8 +1,19 @@
 <div id="header-content-wrapper" class="as-header-wrapper">
     <div class="container-fluid">
         <div id="header" class="row">
-            <div class="col-md-7 panel">
+            <div class="col-md-6 panel">
                 <a href="#" class="btn btn-default" id="menu-toggle" (click)="onToggleClick()">Toggle Menu</a>
+            </div>
+
+            <div class="col-md-6">
+                <form (submit)="findSummoner($event)">
+                    <div *ngIf="errorValidate">{{errorValidate}}</div>
+                    <input type="text" [(ngModel)]="summoner" name="summoner" placeholder="Enter summoner name...">
+                    <select name="region" [(ngModel)]="region">
+                        <option *ngFor="let region of regions" value="{{region.slug}}">{{region.name}}</option>
+                    </select>
+                    <input type="submit" value="find" />
+                </form>
             </div>
         </div>
     </div>

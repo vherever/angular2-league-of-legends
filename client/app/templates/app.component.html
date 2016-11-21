@@ -1,10 +1,18 @@
 <div id="wrapper" [ngClass]="{'toggled': toggledParent}" (window:resize)="onResize($event)">
     <sidebar [toggledChild]="toggledParent"></sidebar>
-    <header-menu (notifyToggled)="onNotifyToggle($event)" [toggledChild]="toggledParent"></header-menu>
+    <header-menu
+        (notifyToggled)="onNotifyToggle($event)"
+        [toggledChild]="toggledParent"
+        [regions]="regions"
+        [apiVersion]="apiVersion"
+        (notifySummonerReq)="onNotifySummonerData($event)"
+        (errorNotify)="onErrorNotify($event)"></header-menu>
     <div class="container-fluid">
 
 
-        <find-summoner></find-summoner>
+        <find-summoner [apiVersion]="apiVersion"
+                       [info]="info"
+                       [error]="error"></find-summoner>
 
 
         <tabs>
