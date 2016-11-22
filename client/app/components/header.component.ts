@@ -4,7 +4,8 @@ import {SummonerService} from "../services/summoner.service";
 import {UtilsService} from "../services/utilsService";
 @Component({
     selector: 'header-menu',
-    templateUrl: 'app/templates/header.component.html'
+    templateUrl: 'app/templates/header.component.html',
+    styleUrls: ['app/styles/header.component.css']
 })
 export class HeaderComponent {
     @Input() toggledChild: boolean;

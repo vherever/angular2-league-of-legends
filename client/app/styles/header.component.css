@@ -1,0 +1,17 @@
+.headerWrapper {
+    background: #2d384a;
+    display: table;
+    width: 100%;
+    padding: 10px;
+}
+.toggle_menu {
+    background: url("../../resources/img/spritesheet.png") 24px 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: table-cell;
+}
+form {
+    display: table-cell;
+    padding-left: 20px;
+}
