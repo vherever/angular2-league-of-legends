@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SummonerService} from "../services/summoner.service";
 import {SummonerInfo} from "../models/summoner-info";
+import {DataHandlerService} from "../services/data-handler.service";
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',
@@ -16,15 +17,20 @@ export class AppComponent implements OnInit{
 
     playerSummary: any;
 
-    constructor(private summonerService: SummonerService) {
+    constructor(private summonerService: SummonerService,
+                private dataService: DataHandlerService) {
         this.summonerService.getApiVersion()
             .subscribe(apiVersion => {
                 this.apiVersion = apiVersion[0]; // get latest version of riot api
+
+                this.dataService.data.game.apiVersion = apiVersion[0];
             });
 
         this.summonerService.getRegions()
             .subscribe(regions => {
                 this.regions = regions;
+
+                this.dataService.data.game.regions = regions;
             });
     }
 

@@ -2,6 +2,8 @@ import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {SummonerInfo} from "../models/summoner-info";
 import {SummonerService} from "../services/summoner.service";
 import {UtilsService} from "../services/utilsService";
+import {DataHandler} from "../models/data-handler";
+import {DataHandlerService} from "../services/data-handler.service";
 @Component({
     selector: 'header-menu',
     templateUrl: 'app/templates/header.component.html',
@@ -20,6 +22,9 @@ export class HeaderComponent {
 
     @Output() playerSummaryNotify: EventEmitter<any> = new EventEmitter<any>();
 
+    // data object
+    @Input() dataObject: any;
+
     info: SummonerInfo;
     localStorageData: any = {
         summoner: localStorage.getItem('summoner'),
@@ -32,7 +37,8 @@ export class HeaderComponent {
 
     constructor(
         private summonerService: SummonerService,
-        private utilsService: UtilsService
+        private utilsService: UtilsService,
+        private dataService: DataHandlerService
     ) {}
 
     onToggleClick() {
@@ -74,5 +80,9 @@ export class HeaderComponent {
                 this.playerSummaryNotify.emit(playerSummary);
                 console.log('playerSummary', playerSummary);
         });
+    }
+
+    ngOnInit() {
+        console.log('data from header', this.dataObject.data.game)
     }
 }

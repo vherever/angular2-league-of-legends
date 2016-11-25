@@ -7,8 +7,10 @@
                     <div *ngIf="errorValidate">{{errorValidate}}</div>
                     <input type="text" [(ngModel)]="summoner" name="summoner" placeholder="Enter summoner name...">
                     <select name="region" [(ngModel)]="region">
-                        <option *ngFor="let region of regions" value="{{region.slug}}">{{region.name}}</option>
+                        <option *ngFor="let region of dataService.data.game.regions" value="{{region.slug}}">{{region.name}}</option>
                     </select>
+
+
                     <input type="submit" value="find" />
                 </form>
             </div>

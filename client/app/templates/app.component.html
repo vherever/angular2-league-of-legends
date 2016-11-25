@@ -8,7 +8,7 @@
         (notifySummonerReq)="onNotifySummonerData($event)"
         (errorNotify)="onErrorNotify($event)"
         (summonerIdNotify)="onSummonerIdNotify($event)"
-        (playerSummaryNotify)="onPlayerSummaryNotify($event)">
+        (playerSummaryNotify)="onPlayerSummaryNotify($event)" [dataObject]="dataService">
     </header-menu>
     <div class="container-fluid">
 
@@ -16,7 +16,7 @@
         <summoner-info [apiVersion]="apiVersion"
                        [info]="info"
                        [error]="error"
-                       [playerSummary]="playerSummary">
+                       [playerSummary]="playerSummary" [dataObject]="dataService">
         </summoner-info>
 
 

@@ -14,6 +14,7 @@ import {RoleStatisticsComponent} from "./components/role-statistics.component";
 import {Tabs} from "./components/tabs.component";
 import {Tab} from "./components/tab.component";
 import {UtilsService} from "./services/utilsService";
+import {DataHandlerService} from "./services/data-handler.service";
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import {UtilsService} from "./services/utilsService";
     ],
     providers: [
         SummonerService,
-        UtilsService
+        UtilsService,
+        DataHandlerService
     ],
     bootstrap: [AppComponent]
 })
