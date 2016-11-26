@@ -3,21 +3,14 @@
     <header-menu
         (notifyToggled)="onNotifyToggle($event)"
         [toggledChild]="toggledParent"
-        [regions]="regions"
-        [apiVersion]="apiVersion"
-        (notifySummonerReq)="onNotifySummonerData($event)"
-        (errorNotify)="onErrorNotify($event)"
-        (summonerIdNotify)="onSummonerIdNotify($event)"
-        (playerSummaryNotify)="onPlayerSummaryNotify($event)" [dataObject]="dataService">
+        [dataObject]="dataService"
+        (findSummonerNotify)="onFindSummonerNotify($event)"
+        (headerInitNotify)="onNotifyHeaderInit($event)">
     </header-menu>
     <div class="container-fluid">
 
 
-        <summoner-info [apiVersion]="apiVersion"
-                       [info]="info"
-                       [error]="error"
-                       [playerSummary]="playerSummary" [dataObject]="dataService">
-        </summoner-info>
+        <summoner-info [dataObject]="dataService"></summoner-info>
 
 
         <tabs>
