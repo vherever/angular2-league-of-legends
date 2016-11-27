@@ -37,4 +37,9 @@ export class SummonerService {
         }
         return body || '';
     }
+
+    getRecentGames(summonerId: number) {
+        return this.http.post('/api/getRecentGames', {summonerId: summonerId})
+            .map(res => res.json());
+    }
 }

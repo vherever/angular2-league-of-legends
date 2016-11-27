@@ -50,4 +50,17 @@ router.post('/getPlayerSummary', function (req, res, next) {
     });
 });
 
+router.post('/getRecentGames', function (req, res, next) {
+    var val = {
+        summonerId: req.body.summonerId
+    };
+    LolApi.getRecentGames(val.summonerId, function (err, data) {
+        if(!err) {
+            res.send(data);
+        } else {
+            res.send({error: 'error loading recent games'});
+        }
+    })
+});
+
 module.exports = router;

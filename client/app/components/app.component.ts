@@ -26,27 +26,6 @@ export class AppComponent implements OnInit{
             });
     }
 
-    private findSummonerByNameRequest(summoner: string, region: string) {
-        if(summoner.length > 1 && summoner != '') {
-            this.dataService.data.errorInput = ''; // if not enough characters long
-            this.dataService.data.errorFind = ''; // if such name don't exist
-            this.summonerService.findSummonerByName(summoner, region)
-                .subscribe(info => {
-                    if(info[summoner]) {
-                        this.dataService.data.player = info[summoner];
-                        localStorage.setItem('summoner', summoner);
-                        localStorage.setItem('region', region);
-                        this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
-                    } else {
-                        this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
-                    }
-                });
-        } else {
-            this.dataService.data.errorFind = '';
-            this.dataService.data.errorInput = 'The name must be at least two characters long!';
-        }
-    }
-
     onFindSummonerNotify(data: any): void {
         this.findSummonerByNameRequest(data.summoner, data.region);
     }
@@ -74,5 +53,35 @@ export class AppComponent implements OnInit{
 
     onNotifyToggle(state: boolean): void {
         this.toggledParent = state;
+    }
+
+    private findSummonerByNameRequest(summoner: string, region: string) {
+        if(summoner.length > 1 && summoner != '') {
+            this.dataService.data.errorInput = ''; // if not enough characters long
+            this.dataService.data.errorFind = ''; // if such name don't exist
+            this.summonerService.findSummonerByName(summoner, region)
+                .subscribe(info => {
+                    if(info[summoner]) {
+                        this.dataService.data.player = info[summoner];
+                        localStorage.setItem('summoner', summoner);
+                        localStorage.setItem('region', region);
+
+                        this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
+                        this.getRecentGames(this.dataService.data.player.id);
+                    } else {
+                        this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
+                    }
+                });
+        } else {
+            this.dataService.data.errorFind = '';
+            this.dataService.data.errorInput = 'The name must be at least two characters long!';
+        }
+    }
+
+    private getRecentGames(summonerId: number) {
+        this.summonerService.getRecentGames(summonerId)
+            .subscribe(recentGames => {
+                this.dataService.data.recentGames = recentGames;
+            });
     }
 }

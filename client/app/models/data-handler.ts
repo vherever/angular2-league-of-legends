@@ -18,5 +18,22 @@ export interface DataHandler {
         modifyDate?: number;
         playerStatSummaryType?: string;
         wins?: number;
+    },
+    recentGames: {
+        championId?: number;
+        createDate?: number;
+        fellowPlayers?: any[];
+        gameId?: number;
+        gameMode?: string;
+        gameType?: string;
+        invalid?: boolean;
+        ipEarned?: number;
+        level?: number;
+        mapId?: number;
+        spell1?: number;
+        spell2?: number;
+        stats?: any[];
+        subType?: string;
+        teamId?: number;
     }
 }

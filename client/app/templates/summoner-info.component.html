@@ -12,7 +12,7 @@
                 profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{dataObject.data.game.apiVersion}}/img/profileicon/{{dataObject.data.player.profileIconId}}.png"><br>
 
                 <div *ngIf="dataObject.data.playerSummary.length">
-                <div *ngFor="let item of dataObject.data.playerSummary">{{item.playerStatSummaryType}} | wins: {{item.wins}}</div>
+                <div *ngFor="let item of dataObject.data.playerSummary"><div *ngIf="item.wins > 0">{{item.playerStatSummaryType}} | wins: {{item.wins}}</div></div>
                 </div>
             </div>
         </div>
