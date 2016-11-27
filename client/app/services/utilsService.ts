@@ -5,4 +5,9 @@ export class UtilsService {
     public obj2Values(obj: any) {
         return Object.values(obj)[0];
     }
+
+    // make -1 to +1
+    public negativeInPositive(number: number) {
+        return Math.abs(number);
+    }
 }

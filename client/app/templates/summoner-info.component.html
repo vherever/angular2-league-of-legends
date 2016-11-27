@@ -9,7 +9,7 @@
             <div>
                 name: {{dataObject.data.player.name}}<br>
                 summonerLevel: {{dataObject.data.player.summonerLevel}}<br>
-                profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{dataObject.data.game.apiVersion}}/img/profileicon/{{dataObject.data.player.profileIconId}}.png"><br>
+                profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{dataObject.data.game.apiVersion}}/img/profileicon/{{utilsService.negativeInPositive(dataObject.data.player.profileIconId)}}.png"><br>
 
                 <div *ngIf="dataObject.data.playerSummary.length">
                 <div *ngFor="let item of dataObject.data.playerSummary"><div *ngIf="item.wins > 0">{{item.playerStatSummaryType}} | wins: {{item.wins}}</div></div>
