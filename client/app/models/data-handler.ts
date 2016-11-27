@@ -36,10 +36,9 @@ export interface DataHandler {
         subType?: string;
         teamId?: number;
     },
-    leagueData: {
+    leagueEntryData: {
         entries?: any[];
         name?: string;
-        participantId?: string;
         queue?: string;
         tier?: string;
     }

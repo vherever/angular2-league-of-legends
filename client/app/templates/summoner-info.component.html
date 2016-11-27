@@ -3,10 +3,10 @@
         <div class="col-lg-12">{{dataObject.data.errorFind}}</div>
     </div>
 </div>
-<div *ngIf="dataObject.data.game.apiVersion && dataObject.data.player.name">
+<div *ngIf="dataObject.data.player.name && dataObject.data.game.apiVersion">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: red">
-            <div>
+            <div *ngIf="dataObject.data.player.name">
                 name: {{dataObject.data.player.name}}<br>
                 summonerLevel: {{dataObject.data.player.summonerLevel}}<br>
                 profileIconId: <img src="http://ddragon.leagueoflegends.com/cdn/{{dataObject.data.game.apiVersion}}/img/profileicon/{{utilsService.negativeInPositive(dataObject.data.player.profileIconId)}}.png"><br>
@@ -16,9 +16,20 @@
                 </div>
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: green">
-            <div>rank picture goes here...</div>
+            <div *ngIf="!dataObject.data.leagueEntryData.error">
+                <div *ngIf="dataObject.data.leagueEntryData">
+                    {{dataObject.data.leagueEntryData.tier}}
+                    <span *ngIf="dataObject.data.leagueEntryData.entries[0]">
+                        {{dataObject.data.leagueEntryData.entries[0].division}} - {{dataObject.data.leagueEntryData.entries[0].leaguePoints}} lp<br>
+                        <img src="../../resources/img/tier/{{dataObject.data.leagueEntryData.tier}}_{{dataObject.data.leagueEntryData.entries[0].division}}.png">
+                    </span>
+                </div>
+            </div>
         </div>
+
+
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="background: black">
             <div>other info</div>
         </div>

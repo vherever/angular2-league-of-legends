@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import * as _ from 'underscore';
 @Injectable()
 export class UtilsService {
     // method to easily get values from objects
@@ -24,7 +25,10 @@ export class UtilsService {
                 localStorage.setItem('setupTime', now);
             }
         }
+    }
 
-        console.log(localStorage.getItem('setupTime'));
+    //check if object is not undefined
+    public isUndefined(obj: any) {
+        return typeof(obj);
     }
 }

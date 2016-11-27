@@ -63,11 +63,11 @@ router.post('/getRecentGames', function (req, res, next) {
     })
 });
 
-router.post('/getLeagueData', function (req, res, next) {
+router.post('/getLeagueEntryData', function (req, res, next) {
     var val = {
         summonerId: req.body.summonerId
     };
-    LolApi.getLeagueData(val.summonerId, function (err, data) {
+    LolApi.getLeagueEntryData(val.summonerId, function (err, data) {
         if(!err) {
             res.send(data);
         } else {

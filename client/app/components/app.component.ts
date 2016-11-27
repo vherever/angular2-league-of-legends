@@ -19,6 +19,8 @@ export class AppComponent implements OnInit{
                 private dataService: DataHandlerService,
                 private utilsService: UtilsService) {
 
+        console.log('data', this.dataService);
+
         // clear apiVersion in localStorage every 24 hours
         this.utilsService.clearLocalStorage();
 
@@ -81,7 +83,7 @@ export class AppComponent implements OnInit{
 
                         this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
                         this.getRecentGames(this.dataService.data.player.id);
-                        this.getLeagueData(this.dataService.data.player.id);
+                        this.getLeagueEntryData(this.dataService.data.player.id);
                     } else {
                         this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
                     }
@@ -99,10 +101,14 @@ export class AppComponent implements OnInit{
             });
     }
 
-    private getLeagueData(summonerId: number) {
-        this.summonerService.getLeagueData(summonerId)
+    private getLeagueEntryData(summonerId: number) {
+        this.summonerService.getLeagueEntryData(summonerId)
             .subscribe(leagueData => {
-                this.dataService.data.leagueData = leagueData;
+                if(leagueData.error) {
+                    this.dataService.data.leagueEntryData = leagueData;
+                } else {
+                    this.dataService.data.leagueEntryData = leagueData[summonerId][0];
+                }
             })
     }
 }

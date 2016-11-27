@@ -40,10 +40,9 @@ export class DataHandlerService {
             subType: '',
             teamId: undefined
         },
-        leagueData: {
+        leagueEntryData: {
             entries: [],
             name: '',
-            participantId: '',
             queue: '',
             tier: ''
         }
