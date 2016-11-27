@@ -42,4 +42,9 @@ export class SummonerService {
         return this.http.post('/api/getRecentGames', {summonerId: summonerId})
             .map(res => res.json());
     }
+
+    getLeagueData(summonerId: number) {
+        return this.http.post('/api/getLeagueData', {summonerId: summonerId})
+            .map(res => res.json());
+    }
 }

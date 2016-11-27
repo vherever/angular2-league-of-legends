@@ -39,6 +39,13 @@ export class DataHandlerService {
             stats: [],
             subType: '',
             teamId: undefined
+        },
+        leagueData: {
+            entries: [],
+            name: '',
+            participantId: '',
+            queue: '',
+            tier: ''
         }
     };
 }

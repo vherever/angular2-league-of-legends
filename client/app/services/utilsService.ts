@@ -10,4 +10,21 @@ export class UtilsService {
     public negativeInPositive(number: number) {
         return Math.abs(number);
     }
+
+    // clear localStorage after 24 hours
+    public clearLocalStorage() {
+        var hours: number = 24; // Reset when storage is more than 24hours
+        var now: any = new Date().getTime();
+        var setupTime: any = localStorage.getItem('setupTime');
+        if (setupTime == null) {
+            localStorage.setItem('setupTime', now)
+        } else {
+            if(now - setupTime > hours*60*60*1000) {
+                localStorage.setItem('apiVersion', '');
+                localStorage.setItem('setupTime', now);
+            }
+        }
+
+        console.log(localStorage.getItem('setupTime'));
+    }
 }

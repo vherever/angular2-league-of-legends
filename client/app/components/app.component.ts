@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SummonerService} from "../services/summoner.service";
 import {DataHandlerService} from "../services/data-handler.service";
+import {UtilsService} from "../services/utilsService";
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',
@@ -10,15 +11,27 @@ export class AppComponent implements OnInit{
 
     localStorageData: any = {
         summoner: localStorage.getItem('summoner') ? localStorage.getItem('summoner') : '',
-        region: localStorage.getItem('region') ? localStorage.getItem('region') : 'na'
+        region: localStorage.getItem('region') ? localStorage.getItem('region') : 'na',
+        apiVersion: localStorage.getItem('apiVersion') ? localStorage.getItem('apiVersion') : ''
     };
 
     constructor(private summonerService: SummonerService,
-                private dataService: DataHandlerService) {
-        this.summonerService.getApiVersion()
-            .subscribe(apiVersion => {
-                this.dataService.data.game.apiVersion = apiVersion[0]; // get the latest version of riot api from array
-            });
+                private dataService: DataHandlerService,
+                private utilsService: UtilsService) {
+
+        // clear apiVersion in localStorage every 24 hours
+        this.utilsService.clearLocalStorage();
+
+        if(this.localStorageData.apiVersion.length === 0) {
+            this.summonerService.getApiVersion()
+                .subscribe(apiVersion => {
+                    this.dataService.data.game.apiVersion = apiVersion[0]; // get the latest version of riot api from array
+                    localStorage.setItem('apiVersion', apiVersion[0]);
+                });
+        } else {
+            this.dataService.data.game.apiVersion = this.localStorageData.apiVersion;
+        }
+
 
         this.summonerService.getRegions()
             .subscribe(regions => {
@@ -68,6 +81,7 @@ export class AppComponent implements OnInit{
 
                         this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
                         this.getRecentGames(this.dataService.data.player.id);
+                        this.getLeagueData(this.dataService.data.player.id);
                     } else {
                         this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
                     }
@@ -83,5 +97,12 @@ export class AppComponent implements OnInit{
             .subscribe(recentGames => {
                 this.dataService.data.recentGames = recentGames;
             });
+    }
+
+    private getLeagueData(summonerId: number) {
+        this.summonerService.getLeagueData(summonerId)
+            .subscribe(leagueData => {
+                this.dataService.data.leagueData = leagueData;
+            })
     }
 }
