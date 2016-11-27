@@ -76,4 +76,20 @@ router.post('/getLeagueEntryData', function (req, res, next) {
     })
 });
 
+router.post('/getMatchHistory', function (req, res, next) {
+    var val = {
+        summonerId: req.body.summonerId,
+        region: req.body.summonerId
+    };
+    var options = {beginIndex: 1, endIndex: 5};
+
+    LolApi.getMatchHistory(val.summonerId, options, val.region, function (err, data) {
+        if(!err) {
+            res.send(data);
+        } else {
+            res.send({error: 'error loading match history'});
+        }
+    })
+});
+
 module.exports = router;

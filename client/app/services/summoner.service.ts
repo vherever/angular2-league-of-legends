@@ -47,4 +47,9 @@ export class SummonerService {
         return this.http.post('/api/getLeagueEntryData', {summonerId: summonerId})
             .map(res => res.json());
     }
+
+    getMatchHistory(summonerId: number, region: string) {
+        return this.http.post('/api/getMatchHistory', {summonerId: summonerId, region: region})
+            .map(res => res.json());
+    }
 }

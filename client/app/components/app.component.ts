@@ -15,6 +15,13 @@ export class AppComponent implements OnInit{
         apiVersion: localStorage.getItem('apiVersion') ? localStorage.getItem('apiVersion') : ''
     };
 
+    // TODO matchHistory for the last 7 days
+
+    // TODO GetRecentGames playerPosition
+    // Player position (Legal values: TOP(1), MIDDLE(2), JUNGLE(3), BOT(4))
+    // playerRole (Legal values: DUO(1), SUPPORT(2), CARRY(3), SOLO(4))
+
+
     constructor(private summonerService: SummonerService,
                 private dataService: DataHandlerService,
                 private utilsService: UtilsService) {
@@ -84,6 +91,7 @@ export class AppComponent implements OnInit{
                         this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
                         this.getRecentGames(this.dataService.data.player.id);
                         this.getLeagueEntryData(this.dataService.data.player.id);
+                        this.getMatchHistory(this.dataService.data.player.id, this.dataService.data.player.region);
                     } else {
                         this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
                     }
@@ -109,6 +117,13 @@ export class AppComponent implements OnInit{
                 } else {
                     this.dataService.data.leagueEntryData = leagueData[summonerId][0];
                 }
+            })
+    }
+
+    private getMatchHistory(summonerId: number) {
+        this.summonerService.getMatchHistory(summonerId)
+            .subscribe(matchHistory => {
+                this.dataService.data.matchHistory = matchHistory;
             })
     }
 }

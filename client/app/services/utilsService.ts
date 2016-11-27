@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import * as _ from 'underscore';
 @Injectable()
 export class UtilsService {
     // method to easily get values from objects
