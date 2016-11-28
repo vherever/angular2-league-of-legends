@@ -1,5 +1,7 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
 .headerWrapper {
-    background: #2d384a;
     display: table;
     width: 100%;
     padding: 10px;
@@ -15,3 +17,4 @@ form {
     display: table-cell;
     padding-left: 20px;
 }
+

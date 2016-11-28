@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="dataObject.data.player.name && dataObject.data.game.apiVersion">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: red">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div *ngIf="dataObject.data.player.name">
                 name: {{dataObject.data.player.name}}<br>
                 summonerLevel: {{dataObject.data.player.summonerLevel}}<br>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background: green">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div *ngIf="!dataObject.data.leagueEntryData.error">
                 <div *ngIf="dataObject.data.leagueEntryData">
                     {{dataObject.data.leagueEntryData.tier}}
@@ -30,7 +30,7 @@
         </div>
 
 
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="background: black">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div>other info</div>
         </div>
     </div>

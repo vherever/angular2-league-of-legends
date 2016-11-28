@@ -1,5 +1,11 @@
-<div id="wrapper" [ngClass]="{'toggled': toggledParent}" (window:resize)="onResize($event)">
+<div class="appWrapper" id="wrapper" [ngClass]="{'toggled': toggledParent}" (window:resize)="onResize($event)">
+
+    <div class="bgWrapper">
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_8.jpg">
+    </div>
+
     <sidebar [toggledChild]="toggledParent"></sidebar>
+
     <header-menu
         (notifyToggled)="onNotifyToggle($event)"
         [toggledChild]="toggledParent"
@@ -7,11 +13,10 @@
         (findSummonerNotify)="onFindSummonerNotify($event)"
         (headerInitNotify)="onNotifyHeaderInit($event)">
     </header-menu>
+
     <div class="container-fluid">
 
-
         <summoner-info [dataObject]="dataService"></summoner-info>
-
 
         <tabs>
             <div class="row">
@@ -34,6 +39,6 @@
         </tabs>
 
 
-
     </div><!--container-fluid-->
+
 </div>

@@ -5,6 +5,7 @@ import {UtilsService} from "../services/utilsService";
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',
+    styleUrls: ['app/styles/app.component.css']
 })
 export class AppComponent implements OnInit{
     toggledParent: boolean = false;

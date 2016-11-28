@@ -1,0 +1,28 @@
+.appWrapper {
+    /*background: url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_8.jpg) no-repeat;*/
+    /*background-size: cover;*/
+    /*height: 331px;*/
+}
+
+.bgWrapper::after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #151d28;
+    opacity: .85;
+    z-index: 0;
+}
+.bgWrapper {
+    width: 100%;
+    height: 450px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.bgWrapper img {
+    width: 100%;
+}
