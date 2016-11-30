@@ -3,14 +3,16 @@
         <div id="header" class="row">
             <div class="col-md-12">
                 <div class="toggle_menu" id="menu-toggle" (click)="onToggleClick()"></div>
-                <form (submit)="findSummonerByName($event)">
-                    <div *ngIf="dataService.data.errorInput" style="color: grey;">{{dataService.data.errorInput}}</div>
-                    <input type="text" [(ngModel)]="model.summoner" name="summoner" placeholder="Enter summoner name...">
-                    <select name="region" [(ngModel)]="model.region">
-                        <option *ngFor="let region of dataService.data.game.regions" value="{{region.slug}}">{{region.name}}</option>
-                    </select>
-                    <input type="submit" value="find" class="league-btn" />
-                </form>
+                <div class="l-search-panel">
+                    <form (submit)="findSummonerByName($event)">
+                        <div *ngIf="dataService.data.errorInput" style="color: grey;">{{dataService.data.errorInput}}</div>
+                        <input type="text" [(ngModel)]="model.summoner" name="summoner" placeholder="Enter summoner name..." class="l-input">
+                        <select name="region" [(ngModel)]="model.region" class="l-select">
+                            <option *ngFor="let region of dataService.data.game.regions" value="{{region.slug}}">{{region.name}}</option>
+                        </select>
+                        <input type="submit" value="find" class="l-btn" />
+                    </form>
+                </div>
             </div>
         </div>
     </div>

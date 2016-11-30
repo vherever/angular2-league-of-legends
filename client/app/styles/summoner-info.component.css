@@ -1,3 +1,63 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
 div {
     color: #ffffff;
+}
+.l-name {
+    font-size: 25pt;
+    color: #ece0a0;
+}
+.l-icon {
+    float: left;
+}
+.l-icon img {
+    max-width: 75px;
+    border: 1px solid #9a9a9a;
+}
+.l-icon, .l-summoner {
+    display: inline-block;
+}
+.l-summoner {
+    padding: 0 25px;
+    line-height: 27pt;
+}
+.l-level {
+    font-size: 12pt;
+    color: #616976;
+    font-style: italic;
+}
+.l-games {
+    display: inline-block;
+    color: #616976;
+    font-style: italic;
+    font-size: 10pt;
+    padding-right: 20px;
+}
+.l-games span {
+    color: #ffffff;
+    font-size: 15pt;
+    font-style: normal;
+    padding-right: 5px;
+    position: relative;
+}
+.l-games.l-total span {
+    color: #ece0a0;
+}
+.l-games.l-wins span:before, .l-games.l-losses span:before {
+    content: '';
+    width: 14px;
+    height: 5px;
+    position: absolute;
+    top: -10px;
+    left: 2px;
+}
+.l-games.l-wins span:before {
+    background: #247124;
+}
+.l-games.l-losses span:before {
+    background: #8a2d17;
+}
+.l-summoner-w-l {
+    padding: 38px 0 0 0;
 }

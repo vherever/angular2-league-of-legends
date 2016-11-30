@@ -1,5 +1,5 @@
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .headerWrapper {
     display: table;
@@ -7,21 +7,43 @@
     padding: 10px;
 }
 .toggle_menu {
-    background: url("../../resources/img/spritesheet.png") 24px 0;
+    background: url("../../resources/img/spritesheet.png") 24px 0 repeat-x;
     width: 24px;
     height: 24px;
     cursor: pointer;
     display: table-cell;
+    float: left;
 }
-form {
-    display: table-cell;
+.toggle_menu:hover {
+    background-color: rgba(195, 195, 195, 0.2);
+}
+.l-search-panel {
     padding-left: 20px;
+    width: 100%;
+    text-align: center;
 }
-.league-btn {
-    padding: 5px;
+.l-btn {
+    padding: 5px 25px;
     background: transparent;
     color: #ffffff;
     text-transform: uppercase;
     border: 1px solid #ffffff;
 }
-.league-btn:focus { outline: none; }
+.l-btn:focus, .l-input:focus, .l-select:focus { outline: none; }
+.l-select, .l-input {
+    height: 32px;
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    width: 152px;
+    margin-right: 12px;
+}
+.l-select option {
+    background: #000000;
+}
+.l-input {
+    padding: 0 5px;
+}
+.l-select:hover, .l-input:hover, .l-btn:hover {
+    background: rgba(195, 195, 195, 0.2);
+}
