@@ -45,6 +45,12 @@ export class DataHandlerService {
             name: '',
             queue: '',
             tier: ''
+        },
+        matchHistory: {
+            endIndex: undefined,
+            matches: [],
+            startIndex: undefined,
+            totalGames: undefined
         }
     };
 }

@@ -41,5 +41,11 @@ export interface DataHandler {
         name?: string;
         queue?: string;
         tier?: string;
+    },
+    matchHistory: {
+        endIndex?: number;
+        matches?: any[];
+        startIndex?: number;
+        totalGames?: number
     }
 }

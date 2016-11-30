@@ -17,4 +17,11 @@ form {
     display: table-cell;
     padding-left: 20px;
 }
-
+.league-btn {
+    padding: 5px;
+    background: transparent;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: 1px solid #ffffff;
+}
+.league-btn:focus { outline: none; }

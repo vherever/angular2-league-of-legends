@@ -9,7 +9,7 @@
                     <select name="region" [(ngModel)]="model.region">
                         <option *ngFor="let region of dataService.data.game.regions" value="{{region.slug}}">{{region.name}}</option>
                     </select>
-                    <input type="submit" value="find" />
+                    <input type="submit" value="find" class="league-btn" />
                 </form>
             </div>
         </div>

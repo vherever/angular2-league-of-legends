@@ -121,8 +121,8 @@ export class AppComponent implements OnInit{
             })
     }
 
-    private getMatchHistory(summonerId: number) {
-        this.summonerService.getMatchHistory(summonerId)
+    private getMatchHistory(summonerId: number, region: string) {
+        this.summonerService.getMatchHistory(summonerId, region)
             .subscribe(matchHistory => {
                 this.dataService.data.matchHistory = matchHistory;
             })
