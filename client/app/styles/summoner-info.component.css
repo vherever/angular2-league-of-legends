@@ -19,13 +19,14 @@ div {
     display: inline-block;
 }
 .l-summoner {
-    padding: 0 25px;
+    padding: 0 10px;
     line-height: 27pt;
 }
 .l-level {
     font-size: 12pt;
-    color: #616976;
+    color: rgba(255,255,255,0.6);
     font-style: italic;
+    font-weight: 300;
 }
 .l-games {
     display: inline-block;
@@ -35,7 +36,7 @@ div {
     padding-right: 20px;
 }
 .l-games span {
-    color: #ffffff;
+    color: rgba(255,255,255,0.6);
     font-size: 15pt;
     font-style: normal;
     padding-right: 5px;
@@ -60,4 +61,20 @@ div {
 }
 .l-summoner-w-l {
     padding: 38px 0 0 0;
+}
+.l-summoner-tier {
+    text-align: center;
+}
+.l-tier-image img {
+    max-width: 175px;
+}
+.l-tier-info {
+    font-size: 12pt;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+}
+.l-matches-history-title {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
 }

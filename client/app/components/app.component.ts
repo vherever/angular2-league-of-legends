@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SummonerService} from "../services/summoner.service";
 import {DataHandlerService} from "../services/data-handler.service";
 import {UtilsService} from "../services/utilsService";
+import * as _ from 'underscore';
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',

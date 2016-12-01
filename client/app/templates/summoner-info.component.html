@@ -46,12 +46,15 @@
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
-            <div *ngIf="!dataObject.data.leagueEntryData.error">
+            <div *ngIf="!dataObject.data.leagueEntryData.error" class="l-summoner-tier">
                 <div *ngIf="dataObject.data.leagueEntryData">
-                    {{dataObject.data.leagueEntryData.tier}}
                     <span *ngIf="dataObject.data.leagueEntryData.entries[0]">
-                        {{dataObject.data.leagueEntryData.entries[0].division}} - {{dataObject.data.leagueEntryData.entries[0].leaguePoints}} lp<br>
-                        <img src="../../resources/img/tier/{{dataObject.data.leagueEntryData.tier}}_{{dataObject.data.leagueEntryData.entries[0].division}}.png">
+                        <div class="l-tier-image">
+                            <img src="../../resources/img/tier/{{dataObject.data.leagueEntryData.tier}}_{{dataObject.data.leagueEntryData.entries[0].division}}.png">
+                        </div>
+                        <div class="l-tier-info">
+                            {{dataObject.data.leagueEntryData.tier}} {{dataObject.data.leagueEntryData.entries[0].division}} - {{dataObject.data.leagueEntryData.entries[0].leaguePoints}} LP
+                        </div>
                     </span>
                 </div>
             </div>
@@ -59,7 +62,25 @@
 
 
         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-            <div>other info</div>
+            <div class="l-matches-history">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="l-matches-history-title">
+                            Past 30 matches, Summoner's Rift
+                        </div>
+                        <div class="l-roles">
+                            <div class="l-mid">Mid</div>
+                            <div class="l-ad">AD Carry</div>
+                            <div class="l-sup">Support</div>
+                            <div class="l-jun">Jungle</div>
+                            <div class="l-top">Top</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        123
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

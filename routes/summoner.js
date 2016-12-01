@@ -81,7 +81,7 @@ router.post('/getMatchHistory', function (req, res, next) {
         summonerId: req.body.summonerId,
         region: req.body.summonerId
     };
-    var options = {beginIndex: 1, endIndex: 5};
+    var options = {beginIndex: 1, endIndex: 31};
 
     LolApi.getMatchHistory(val.summonerId, options, val.region, function (err, data) {
         if(!err) {
