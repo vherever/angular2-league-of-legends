@@ -126,6 +126,28 @@ export class AppComponent implements OnInit{
         this.summonerService.getMatchHistory(summonerId, region)
             .subscribe(matchHistory => {
                 this.dataService.data.matchHistory = matchHistory;
+                this.calculateMatchesByRole(this.dataService.data.matchHistory.matches);
             })
+    }
+
+    // TODO: continue
+    matchesByRole: any = {
+        mid: [],
+        adc: [],
+        sup: [],
+        jun: [],
+        top: []
+    };
+
+    private calculateMatchesByRole(matchHistory: any) {
+        this.matchesByRole = {
+            mid: _.where(matchHistory, {'lane': 'MID'}),
+            adc: _.where(matchHistory, {'lane': 'BOTTOM', 'role': 'DUO_CARRY'}),
+            sup: _.where(matchHistory, {'lane': 'BOTTOM', 'role': 'DUO_SUPPORT'}),
+            jun: _.where(matchHistory, {'lane': 'JUNGLE'}),
+            top: _.where(matchHistory, {'lane': 'TOP'})
+        };
+
+        console.log('top', this.matchesByRole);
     }
 }
