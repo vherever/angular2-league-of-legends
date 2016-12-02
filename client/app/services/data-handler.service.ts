@@ -5,6 +5,15 @@ export class DataHandlerService {
     data: DataHandler = {
         errorInput: '',
         errorFind: '',
+        _data: {
+            matchesByRole: {
+                mid: undefined,
+                adc: undefined,
+                sup: undefined,
+                jun: undefined,
+                top: undefined,
+            }
+        },
         game: {
             apiVersion: undefined,
             regions: []

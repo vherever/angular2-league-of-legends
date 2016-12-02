@@ -1,6 +1,15 @@
 export interface DataHandler {
     errorInput?: string;
     errorFind?: string;
+    _data: {
+        matchesByRole: {
+            mid: number;
+            adc: number;
+            sup: number;
+            jun: number;
+            top: number;
+        }
+    };
     game: {
         apiVersion?: number;
         regions?: any[];

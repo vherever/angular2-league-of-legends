@@ -30,4 +30,9 @@ export class UtilsService {
     public isUndefined(obj: any) {
         return typeof(obj);
     }
+
+    public calculateMatchesByRoleInPercentage(val: number, percents: number, matchesNumber: number) {
+        return percents * val / matchesNumber;
+    }
+
 }

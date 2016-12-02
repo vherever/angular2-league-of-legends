@@ -130,17 +130,8 @@ export class AppComponent implements OnInit{
             })
     }
 
-    // TODO: continue
-    matchesByRole: any = {
-        mid: [],
-        adc: [],
-        sup: [],
-        jun: [],
-        top: []
-    };
-
     private calculateMatchesByRole(matchHistory: any) {
-        this.matchesByRole = {
+        let _matchesByRole = {
             mid: _.where(matchHistory, {'lane': 'MID'}),
             adc: _.where(matchHistory, {'lane': 'BOTTOM', 'role': 'DUO_CARRY'}),
             sup: _.where(matchHistory, {'lane': 'BOTTOM', 'role': 'DUO_SUPPORT'}),
@@ -148,6 +139,14 @@ export class AppComponent implements OnInit{
             top: _.where(matchHistory, {'lane': 'TOP'})
         };
 
-        console.log('top', this.matchesByRole);
+        this.dataService.data._data.matchesByRole = {
+            mid: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.mid.length, 100, 30),
+            adc: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.adc.length, 100, 30),
+            sup: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.sup.length, 100, 30),
+            jun: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.jun.length, 100, 30),
+            top: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.top.length, 100, 30)
+        };
     }
+
+
 }
