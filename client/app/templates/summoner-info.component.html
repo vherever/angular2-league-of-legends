@@ -69,11 +69,25 @@
                             Past 30 matches, Summoner's Rift
                         </div>
                         <div class="l-roles">
-                            <div class="l-mid">Mid</div>
-                            <div class="l-ad">AD Carry</div>
-                            <div class="l-sup">Support</div>
-                            <div class="l-jun">Jungle</div>
-                            <div class="l-top">Top</div>
+                            <div class="l-mid">
+                                <div class="l-role">Mid</div>
+                                <line-chart [role]="dataObject.data._data.matchesByRole.mid"></line-chart>
+                            </div>
+                            <div class="l-ad">
+                                <div class="l-role">AD Carry</div>
+                                <line-chart [role]="dataObject.data._data.matchesByRole.adc"></line-chart></div>
+                            <div class="l-sup">
+                                <div class="l-role">Support</div>
+                                <line-chart [role]="dataObject.data._data.matchesByRole.sup"></line-chart>
+                            </div>
+                            <div class="l-jun">
+                                <div class="l-role">Jungle</div>
+                                <line-chart [role]="dataObject.data._data.matchesByRole.jun"></line-chart>
+                            </div>
+                            <div class="l-top">
+                                <div class="l-role">Top</div>
+                                <line-chart [role]="dataObject.data._data.matchesByRole.top"></line-chart>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

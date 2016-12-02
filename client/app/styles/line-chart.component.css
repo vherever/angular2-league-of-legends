@@ -1,0 +1,19 @@
+.l-line-chart {
+    display: inline-block;
+    width: 140px;
+    height: 6px;
+    background: #0e1319;
+    border: 1px solid rgba(222,222,222,.2);
+}
+.l-chart-inner {
+    height: 4px;
+    background: #00a137;
+    display: none;
+}
+.l-chart-inner.show {
+    display: block;
+    -webkit-animation: w70 1s ease forwards;
+}
+@-webkit-keyframes w70 {
+    from { width: 0; }
+}

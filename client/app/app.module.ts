@@ -15,6 +15,7 @@ import {Tabs} from "./components/tabs.component";
 import {Tab} from "./components/tab.component";
 import {UtilsService} from "./services/utilsService";
 import {DataHandlerService} from "./services/data-handler.service";
+import {LineChartComponent} from "./components/line-chart.component";
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {DataHandlerService} from "./services/data-handler.service";
         ChampionStatisticsComponent,
         RoleStatisticsComponent,
         Tabs,
-        Tab
+        Tab,
+        LineChartComponent
     ],
     providers: [
         SummonerService,
