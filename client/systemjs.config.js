@@ -13,6 +13,7 @@
     map: {
       // our app is within the app folder
       app: 'app',
+      'ng2-slim-loading-bar': 'node_modules/ng2-slim-loading-bar'  ,
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -37,7 +38,8 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
+      'ng2-slim-loading-bar':  { main: 'index.js',  defaultExtension: 'js' },
     }
   });
 })(this);

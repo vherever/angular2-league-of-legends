@@ -16,12 +16,14 @@ import {Tab} from "./components/tab.component";
 import {UtilsService} from "./services/utilsService";
 import {DataHandlerService} from "./services/data-handler.service";
 import {LineChartComponent} from "./components/line-chart.component";
+import {SlimLoadingBarModule} from "ng2-slim-loading-bar";
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        FormsModule
+        FormsModule,
+        SlimLoadingBarModule.forRoot()
     ],
     declarations: [
         AppComponent,

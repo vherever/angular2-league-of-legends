@@ -3,6 +3,7 @@ import {SummonerService} from "../services/summoner.service";
 import {DataHandlerService} from "../services/data-handler.service";
 import {UtilsService} from "../services/utilsService";
 import * as _ from 'underscore';
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit{
 
     constructor(private summonerService: SummonerService,
                 private dataService: DataHandlerService,
-                private utilsService: UtilsService) {
+                private utilsService: UtilsService,
+                private slimLoadingBarService: SlimLoadingBarService) {
 
         console.log('data', this.dataService);
 
@@ -81,6 +83,9 @@ export class AppComponent implements OnInit{
 
     private findSummonerByNameRequest(summoner: string, region: string) {
         if(summoner.length > 1 && summoner != '') {
+            // show progress bar
+            this.slimLoadingBarService.start();
+
             this.dataService.data.errorInput = ''; // if not enough characters long
             this.dataService.data.errorFind = ''; // if such name don't exist
             this.summonerService.findSummonerByName(summoner, region)
@@ -127,6 +132,9 @@ export class AppComponent implements OnInit{
             .subscribe(matchHistory => {
                 this.dataService.data.matchHistory = matchHistory;
                 this.calculateMatchesByRole(this.dataService.data.matchHistory.matches);
+
+                // end progress bar, add this method to the end of your request stack
+                this.slimLoadingBarService.complete();
             })
     }
 
