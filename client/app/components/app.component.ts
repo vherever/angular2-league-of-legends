@@ -100,7 +100,8 @@ export class AppComponent implements OnInit{
                         this.getLeagueEntryData(this.dataService.data.player.id);
                         this.getMatchHistory(this.dataService.data.player.id, this.dataService.data.player.region);
                     } else {
-                        this.dataService.data.errorFind = 'Wooops! This summoner is not exist. Please try another';
+                        this.slimLoadingBarService.complete(); // complete loading bar
+                        this.dataService.data.errorFind = info.error;
                     }
                 });
         } else {

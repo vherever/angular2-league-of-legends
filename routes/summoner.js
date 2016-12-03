@@ -30,7 +30,7 @@ router.post('/summoner', function (req, res, next) {
             res.send(summoner);
         }
         else {
-            res.send({error: 'Wooops! This summoner is not exist. Please try another'});
+            res.send({error: err.message});
         }
     });
 });
