@@ -52,4 +52,9 @@ export class SummonerService {
         return this.http.post('/api/getMatchHistory', {summonerId: summonerId, region: region})
             .map(res => res.json());
     }
+
+    getChampionById(championId: number, region: string) {
+        return this.http.post('/api/getChampionById', {championId: championId, region: region})
+            .map(res => res.json());
+    }
 }

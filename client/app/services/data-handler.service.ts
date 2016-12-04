@@ -12,6 +12,12 @@ export class DataHandlerService {
                 sup: undefined,
                 jun: undefined,
                 top: undefined,
+            },
+            championInfo: {
+                id: undefined,
+                key: '',
+                name: '',
+                title: ''
             }
         },
         game: {

@@ -8,6 +8,12 @@ export interface DataHandler {
             sup: number;
             jun: number;
             top: number;
+        },
+        championInfo: {
+            id: number;
+            key: string;
+            name: string;
+            title: string;
         }
     };
     game: {

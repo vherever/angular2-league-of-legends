@@ -114,6 +114,7 @@ export class AppComponent implements OnInit{
         this.summonerService.getRecentGames(summonerId)
             .subscribe(recentGames => {
                 this.dataService.data.recentGames = recentGames;
+                this.getChampionById(this.dataService.data.recentGames[0].championId, this.dataService.data.player.region);
             });
     }
 
@@ -133,9 +134,6 @@ export class AppComponent implements OnInit{
             .subscribe(matchHistory => {
                 this.dataService.data.matchHistory = matchHistory;
                 this.calculateMatchesByRole(this.dataService.data.matchHistory.matches);
-
-                // end progress bar, add this method to the end of your request stack
-                this.slimLoadingBarService.complete();
             })
     }
 
@@ -155,6 +153,16 @@ export class AppComponent implements OnInit{
             jun: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.jun.length, 100, 30),
             top: this.utilsService.calculateMatchesByRoleInPercentage(_matchesByRole.top.length, 100, 30)
         };
+    }
+
+    private getChampionById(championId: number, region: string) {
+        this.summonerService.getChampionById(championId, region)
+            .subscribe(championInfo => {
+                this.dataService.data._data.championInfo = championInfo;
+
+                // end progress bar, add this method to the end of your request stack
+                this.slimLoadingBarService.complete();
+            })
     }
 
 

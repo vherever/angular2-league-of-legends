@@ -2,7 +2,7 @@
 <ng2-slim-loading-bar [color]="'#f1c40f'" [height]="'2px'"></ng2-slim-loading-bar>
 
     <div class="bgWrapper">
-        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_8.jpg">
+        <img *ngIf="dataService.data._data.championInfo.key" src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{dataService.data._data.championInfo.key}}_0.jpg">
     </div>
 
     <sidebar [toggledChild]="toggledParent"></sidebar>
