@@ -14,7 +14,8 @@ export interface DataHandler {
             key: string;
             name: string;
             title: string;
-        }
+        },
+        topChampions?: any[];
     };
     game: {
         apiVersion?: number;
@@ -62,5 +63,8 @@ export interface DataHandler {
         matches?: any[];
         startIndex?: number;
         totalGames?: number
+    },
+    champions: {
+        data?: any[]
     }
 }

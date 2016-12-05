@@ -10,6 +10,8 @@ router.get('/getApiVersion', function (req, res, next) {
     LolApi.Static.getVersions('euw', function(err, info) {
         if(!err) {
             res.send(info);
+        } else {
+            res.send({error: err.message});
         }
     });
 });
@@ -18,6 +20,8 @@ router.get('/getRegions', function (req, res, next) {
     LolApi.getShards(function (err, regions) {
         if(!err) {
             res.send(regions);
+        } else {
+            res.send({error: err.message});
         }
     });
 });
@@ -45,7 +49,7 @@ router.post('/getPlayerSummary', function (req, res, next) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: 'error loading player summary'});
+            res.send({error: err.message});
         }
     });
 });
@@ -58,7 +62,7 @@ router.post('/getRecentGames', function (req, res, next) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: 'error loading recent games'});
+            res.send({error: err.message});
         }
     })
 });
@@ -71,7 +75,7 @@ router.post('/getLeagueEntryData', function (req, res, next) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: 'error loading league data'});
+            res.send({error: err.message});
         }
     })
 });
@@ -81,28 +85,42 @@ router.post('/getMatchHistory', function (req, res, next) {
         summonerId: req.body.summonerId,
         region: req.body.summonerId
     };
-    var options = {beginIndex: 1, endIndex: 31};
+    // var options = {beginIndex: 1, endIndex: 31};
 
-    LolApi.getMatchHistory(val.summonerId, options, val.region, function (err, data) {
+    LolApi.getMatchHistory(val.summonerId, val.region, function (err, data) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: 'error loading match history'});
+            res.send({error: err.message});
         }
     })
 });
 
-router.post('/getChampionById', function (req, res, next) {
+// router.post('/getChampionById', function (req, res, next) {
+//     var val = {
+//         championId: req.body.championId,
+//         region: req.body.region
+//     };
+//
+//     LolApi.Static.getChampionById(val.championId, val.region, function (err, data) {
+//         if(!err) {
+//             res.send(data);
+//         } else {
+//             res.send({error: 'error loading champion data'});
+//         }
+//     })
+// });
+
+router.post('/getChampionList', function (req, res, next) {
     var val = {
-        championId: req.body.championId,
         region: req.body.region
     };
 
-    LolApi.Static.getChampionById(val.championId, val.region, function (err, data) {
+    LolApi.Static.getChampionList(val.region, function (err, data) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: 'error loading champion data'});
+            res.send({error: err.message});
         }
     })
 });

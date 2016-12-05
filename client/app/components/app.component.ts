@@ -4,6 +4,7 @@ import {DataHandlerService} from "../services/data-handler.service";
 import {UtilsService} from "../services/utilsService";
 import * as _ from 'underscore';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import {take} from "rxjs/operator/take";
 @Component({
     selector: 'my-app',
     templateUrl: 'app/templates/app.component.html',
@@ -96,9 +97,9 @@ export class AppComponent implements OnInit{
                         localStorage.setItem('region', region);
 
                         this.getPlayerSummary(this.dataService.data.player.id, this.dataService.data.player.region);
+                        this.getChampionList(this.dataService.data.player.region);
                         this.getRecentGames(this.dataService.data.player.id);
                         this.getLeagueEntryData(this.dataService.data.player.id);
-                        this.getMatchHistory(this.dataService.data.player.id, this.dataService.data.player.region);
                     } else {
                         this.slimLoadingBarService.complete(); // complete loading bar
                         this.dataService.data.errorFind = info.error;
@@ -114,7 +115,6 @@ export class AppComponent implements OnInit{
         this.summonerService.getRecentGames(summonerId)
             .subscribe(recentGames => {
                 this.dataService.data.recentGames = recentGames;
-                this.getChampionById(this.dataService.data.recentGames[0].championId, this.dataService.data.player.region);
             });
     }
 
@@ -133,11 +133,15 @@ export class AppComponent implements OnInit{
         this.summonerService.getMatchHistory(summonerId, region)
             .subscribe(matchHistory => {
                 this.dataService.data.matchHistory = matchHistory;
-                this.calculateMatchesByRole(this.dataService.data.matchHistory.matches);
+                if(this.dataService.data.matchHistory.matches) {
+                    this.calculateMatchesByRole(this.dataService.data.matchHistory.matches.slice(0, 30));
+                    this.calculateTopPlayedChampionsById(this.dataService.data.matchHistory.matches);
+                }
             })
     }
 
     private calculateMatchesByRole(matchHistory: any) {
+        // let sliced = matchHistory.slice(0, 30);
         let _matchesByRole = {
             mid: _.where(matchHistory, {'lane': 'MID'}),
             adc: _.where(matchHistory, {'lane': 'BOTTOM', 'role': 'DUO_CARRY'}),
@@ -155,15 +159,42 @@ export class AppComponent implements OnInit{
         };
     }
 
-    private getChampionById(championId: number, region: string) {
-        this.summonerService.getChampionById(championId, region)
-            .subscribe(championInfo => {
-                this.dataService.data._data.championInfo = championInfo;
 
-                // end progress bar, add this method to the end of your request stack
-                this.slimLoadingBarService.complete();
+
+    private getChampionById(championId: number) {
+        this.dataService.data._data.championInfo = (_.where(this.dataService.data.champions.data, {'id': championId}))[0];
+
+        // end progress bar, add this method to the end of your request stack
+        this.slimLoadingBarService.complete();
+    }
+
+    private getChampionList(region: string) {
+        this.summonerService.getChampionList(region)
+            .subscribe(champions => {
+                this.dataService.data.champions = champions;
+                this.getMatchHistory(this.dataService.data.player.id, this.dataService.data.player.region);
+                this.getChampionById(this.dataService.data.recentGames[0].championId);
+
             })
     }
 
+    private calculateTopPlayedChampionsById(matchHistory: any[]) {
+        let champions: any[] = [];
 
+        _.each(matchHistory, function (i) {
+            champions.push(i.champion);
+        });
+
+        var that = this;
+
+        _.each(this.dataService.data.champions.data, (j) => {
+            _.each(that.utilsService.sortByPopularity(champions).slice(0,5), (i) => {
+                if(i.value === j.id) {
+                    that.dataService.data._data.topChampions.push(Object.assign({'count': i.count}, j));
+                }
+            });
+        });
+
+        console.log(this.dataService.data._data.topChampions);
+    }
 }

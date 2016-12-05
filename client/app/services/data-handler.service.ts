@@ -18,7 +18,8 @@ export class DataHandlerService {
                 key: '',
                 name: '',
                 title: ''
-            }
+            },
+            topChampions: []
         },
         game: {
             apiVersion: undefined,
@@ -66,6 +67,9 @@ export class DataHandlerService {
             matches: [],
             startIndex: undefined,
             totalGames: undefined
+        },
+        champions: {
+            data: []
         }
     };
 }

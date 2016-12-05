@@ -53,8 +53,13 @@ export class SummonerService {
             .map(res => res.json());
     }
 
-    getChampionById(championId: number, region: string) {
-        return this.http.post('/api/getChampionById', {championId: championId, region: region})
+    // getChampionById(championId: number, region: string) {
+    //     return this.http.post('/api/getChampionById', {championId: championId, region: region})
+    //         .map(res => res.json());
+    // }
+
+    getChampionList(region: string) {
+        return this.http.post('/api/getChampionList', {region: region})
             .map(res => res.json());
     }
 }
