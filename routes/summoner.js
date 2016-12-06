@@ -96,21 +96,6 @@ router.post('/getMatchHistory', function (req, res, next) {
     })
 });
 
-// router.post('/getChampionById', function (req, res, next) {
-//     var val = {
-//         championId: req.body.championId,
-//         region: req.body.region
-//     };
-//
-//     LolApi.Static.getChampionById(val.championId, val.region, function (err, data) {
-//         if(!err) {
-//             res.send(data);
-//         } else {
-//             res.send({error: 'error loading champion data'});
-//         }
-//     })
-// });
-
 router.post('/getChampionList', function (req, res, next) {
     var val = {
         region: req.body.region
