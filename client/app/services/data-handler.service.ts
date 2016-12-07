@@ -4,7 +4,9 @@ import {DataHandler} from "../models/data-handler";
 export class DataHandlerService {
     data: DataHandler = {
         errorInput: '',
-        errorFind: '',
+        errors: {
+            summonerData: ''
+        },
         _data: {
             matchesByRole: {
                 mid: undefined,

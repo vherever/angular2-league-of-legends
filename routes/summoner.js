@@ -91,7 +91,8 @@ router.post('/getMatchHistory', function (req, res, next) {
         if(!err) {
             res.send(data);
         } else {
-            res.send({error: err.message});
+            // res.send({error: err.message});
+            res.status(200).send({status:429, message: 'too much requests!'});
         }
     })
 });

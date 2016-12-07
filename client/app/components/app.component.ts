@@ -88,11 +88,13 @@ export class AppComponent implements OnInit{
             this.slimLoadingBarService.start();
 
             this.dataService.data.errorInput = ''; // if not enough characters long
-            this.dataService.data.errorFind = ''; // if such name don't exist
+            this.dataService.data.errors.summonerData = ''; // if such name don't exist
             this.summonerService.findSummonerByName(summoner, region)
                 .subscribe(info => {
                     if(info[summoner]) {
                         this.dataService.data.player = info[summoner];
+                        this.dataService.data._data.topChampions = [];
+                        this.dataService.data._data.matchesByRole = [];
                         localStorage.setItem('summoner', summoner);
                         localStorage.setItem('region', region);
 
@@ -102,11 +104,11 @@ export class AppComponent implements OnInit{
                         this.getLeagueEntryData(this.dataService.data.player.id);
                     } else {
                         this.slimLoadingBarService.complete(); // complete loading bar
-                        this.dataService.data.errorFind = info.error;
+                        this.dataService.data.errors.summonerData = info.error;
                     }
                 });
         } else {
-            this.dataService.data.errorFind = '';
+            this.dataService.data.errors.summonerData = '';
             this.dataService.data.errorInput = 'The name must be at least two characters long!';
         }
     }
@@ -136,6 +138,8 @@ export class AppComponent implements OnInit{
                 if(this.dataService.data.matchHistory.matches) {
                     this.calculateMatchesByRole(this.dataService.data.matchHistory.matches.slice(0, 30));
                     this.calculateTopPlayedChampionsById(this.dataService.data.matchHistory.matches);
+                } else {
+                    this.dataService.data.errors.summonerData = matchHistory.error;
                 }
             })
     }

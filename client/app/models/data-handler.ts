@@ -1,13 +1,15 @@
 export interface DataHandler {
     errorInput?: string;
-    errorFind?: string;
+    errors: {
+        summonerData: string
+    }
     _data: {
         matchesByRole: {
-            mid: number;
-            adc: number;
-            sup: number;
-            jun: number;
-            top: number;
+            mid?: number;
+            adc?: number;
+            sup?: number;
+            jun?: number;
+            top?: number;
         },
         championInfo: {
             id: number;
