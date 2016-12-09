@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var LolApi = require('leagueapi');
+var httpErrors = require('httperrors');
+
 var app = {
     key: process.env.APP_KEY
 };
@@ -26,6 +28,11 @@ router.get('/getRegions', function (req, res, next) {
     });
 });
 
+var errors = {
+    notFound: new httpErrors.NotFound('The thing you were looking for was not found')
+};
+
+
 router.post('/summoner', function (req, res, next) {
     var val = req.body.summoner;
     var val2 = req.body.region;
@@ -34,7 +41,10 @@ router.post('/summoner', function (req, res, next) {
             res.send(summoner);
         }
         else {
-            res.send({error: err.message});
+            // res.send({error: err.message});
+            if (errors.notFound) {
+                console.log(errors.notFound.message);
+            }
         }
     });
 });
