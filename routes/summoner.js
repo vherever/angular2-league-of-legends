@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var LolApi = require('leagueapi');
-var httpErrors = require('httperrors');
 
 var app = {
     key: process.env.APP_KEY
@@ -28,10 +27,6 @@ router.get('/getRegions', function (req, res, next) {
     });
 });
 
-var errors = {
-    notFound: new httpErrors.NotFound('The thing you were looking for was not found')
-};
-
 
 router.post('/summoner', function (req, res, next) {
     var val = req.body.summoner;
@@ -41,10 +36,7 @@ router.post('/summoner', function (req, res, next) {
             res.send(summoner);
         }
         else {
-            // res.send({error: err.message});
-            if (errors.notFound) {
-                console.log(errors.notFound.message);
-            }
+            res.send({error: err.message});
         }
     });
 });
@@ -101,8 +93,7 @@ router.post('/getMatchHistory', function (req, res, next) {
         if(!err) {
             res.send(data);
         } else {
-            // res.send({error: err.message});
-            res.status(200).send({status:429, message: 'too much requests!'});
+            res.send({error: err.message});
         }
     })
 });

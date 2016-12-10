@@ -1,6 +1,9 @@
-Top played Champions:
 <div *ngIf="dataService.data._data.topChampions.length > 0">
+Top played Champions:
     <ul>
         <li *ngFor="let item of dataService.data._data.topChampions">{{item.name}}</li>
     </ul>
+</div>
+<div *ngIf="dataService.data.matchHistory.error">
+    {{dataService.data.matchHistory.error}}
 </div>

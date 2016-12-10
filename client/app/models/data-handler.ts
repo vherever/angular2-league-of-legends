@@ -1,7 +1,8 @@
 export interface DataHandler {
     errorInput?: string;
     errors: {
-        summonerData: string
+        player: string,
+
     }
     _data: {
         matchesByRole: {
@@ -24,6 +25,7 @@ export interface DataHandler {
         regions?: any[];
     };
     player: {
+        error?: string;
         region: string;
         id?: number;
         name?: string;
@@ -61,6 +63,7 @@ export interface DataHandler {
         tier?: string;
     },
     matchHistory: {
+        error?: string;
         endIndex?: number;
         matches?: any[];
         startIndex?: number;

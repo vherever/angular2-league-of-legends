@@ -88,7 +88,7 @@ export class AppComponent implements OnInit{
             this.slimLoadingBarService.start();
 
             this.dataService.data.errorInput = ''; // if not enough characters long
-            this.dataService.data.errors.summonerData = ''; // if such name don't exist
+            // this.dataService.data.errors.player = ''; // if such name don't exist
             this.summonerService.findSummonerByName(summoner, region)
                 .subscribe(info => {
                     if(info[summoner]) {
@@ -104,11 +104,12 @@ export class AppComponent implements OnInit{
                         this.getLeagueEntryData(this.dataService.data.player.id);
                     } else {
                         this.slimLoadingBarService.complete(); // complete loading bar
-                        this.dataService.data.errors.summonerData = info.error;
+                        // this.dataService.data.errors.player = info.error;
+                        this.dataService.data.player = info;
                     }
                 });
         } else {
-            this.dataService.data.errors.summonerData = '';
+            // this.dataService.data.errors.player = '';
             this.dataService.data.errorInput = 'The name must be at least two characters long!';
         }
     }
@@ -139,7 +140,7 @@ export class AppComponent implements OnInit{
                     this.calculateMatchesByRole(this.dataService.data.matchHistory.matches.slice(0, 30));
                     this.calculateTopPlayedChampionsById(this.dataService.data.matchHistory.matches);
                 } else {
-                    this.dataService.data.errors.summonerData = matchHistory.error;
+                    this.dataService.data.matchHistory = matchHistory;
                 }
             })
     }

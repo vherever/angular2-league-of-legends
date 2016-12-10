@@ -5,7 +5,7 @@ export class DataHandlerService {
     data: DataHandler = {
         errorInput: '',
         errors: {
-            summonerData: ''
+            player: ''
         },
         _data: {
             matchesByRole: {
@@ -28,6 +28,7 @@ export class DataHandlerService {
             regions: []
         },
         player: {
+            error: '',
             region: '',
             id: undefined,
             name: '',
@@ -65,6 +66,7 @@ export class DataHandlerService {
             tier: ''
         },
         matchHistory: {
+            error: '',
             endIndex: undefined,
             matches: [],
             startIndex: undefined,

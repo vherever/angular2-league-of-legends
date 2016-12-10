@@ -1,6 +1,6 @@
-<div *ngIf="dataObject.data.errors.summonerData">
+<div *ngIf="dataObject.data.player.error">
     <div class="row">
-        <div class="col-lg-12">{{dataObject.data.errors.summonerData}}</div>
+        <div class="col-lg-12">{{dataObject.data.player.error}}</div>
     </div>
 </div>
 <div *ngIf="dataObject.data.player.name && dataObject.data.game.apiVersion">
@@ -46,6 +46,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+            <div *ngIf="dataObject.data.leagueEntryData.error">{{dataObject.data.leagueEntryData.error}}</div>
             <div *ngIf="!dataObject.data.leagueEntryData.error" class="l-summoner-tier">
                 <div *ngIf="dataObject.data.leagueEntryData">
                     <span *ngIf="dataObject.data.leagueEntryData.entries[0]">
@@ -65,29 +66,35 @@
             <div class="l-matches-history">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="l-matches-history-title">
-                            Past 30 matches, Summoner's Rift
+                        <div *ngIf="(dataService.data._data.matchesByRole | json) != '{}' && !dataService.data.matchHistory.error">
+                            <div class="l-matches-history-title">
+                                Past 30 matches, Summoner's Rift
+                            </div>
+                            <div class="l-roles">
+                                <div class="l-mid">
+                                    <div class="l-role">Mid</div>
+                                    <line-chart [role]="dataObject.data._data.matchesByRole.mid"></line-chart>
+                                </div>
+                                <div class="l-ad">
+                                    <div class="l-role">AD Carry</div>
+                                    <line-chart [role]="dataObject.data._data.matchesByRole.adc"></line-chart>
+                                </div>
+                                <div class="l-sup">
+                                    <div class="l-role">Support</div>
+                                    <line-chart [role]="dataObject.data._data.matchesByRole.sup"></line-chart>
+                                </div>
+                                <div class="l-jun">
+                                    <div class="l-role">Jungle</div>
+                                    <line-chart [role]="dataObject.data._data.matchesByRole.jun"></line-chart>
+                                </div>
+                                <div class="l-top">
+                                    <div class="l-role">Top</div>
+                                    <line-chart [role]="dataObject.data._data.matchesByRole.top"></line-chart>
+                                </div>
+                            </div>
                         </div>
-                        <div class="l-roles">
-                            <div class="l-mid">
-                                <div class="l-role">Mid</div>
-                                <line-chart [role]="dataObject.data._data.matchesByRole.mid"></line-chart>
-                            </div>
-                            <div class="l-ad">
-                                <div class="l-role">AD Carry</div>
-                                <line-chart [role]="dataObject.data._data.matchesByRole.adc"></line-chart></div>
-                            <div class="l-sup">
-                                <div class="l-role">Support</div>
-                                <line-chart [role]="dataObject.data._data.matchesByRole.sup"></line-chart>
-                            </div>
-                            <div class="l-jun">
-                                <div class="l-role">Jungle</div>
-                                <line-chart [role]="dataObject.data._data.matchesByRole.jun"></line-chart>
-                            </div>
-                            <div class="l-top">
-                                <div class="l-role">Top</div>
-                                <line-chart [role]="dataObject.data._data.matchesByRole.top"></line-chart>
-                            </div>
+                        <div *ngIf="dataService.data.matchHistory.error">
+                            {{dataService.data.matchHistory.error}}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -96,5 +103,7 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
